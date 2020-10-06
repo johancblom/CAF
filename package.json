@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "triggerAllTests-headless": "npx cypress run"
+    "triggerAllTests-headless": "npx cypress run",
+    "triggerAllTests-dashboard": "npx cypress run --record --key 3eb62a5a-5257-4a44-889d-c4a3656baee2"
   },
   "author": "",
   "license": "ISC",
