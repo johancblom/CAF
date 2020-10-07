@@ -8,7 +8,7 @@ pipeline {
    parallel {
     stage('Slave Node1') {
      agent {
-      label "master"
+      label "remote_node1"
      }
      steps {
       git url: 'https://github.com/johancblom/CAF.git'
@@ -19,7 +19,7 @@ pipeline {
     }
     stage('Slave Node2') {
      agent {
-      label "master"
+      label "remote_node2"
      }
      steps {
       git url: 'https://github.com/johancblom/CAF.git'
