@@ -34,13 +34,17 @@ pipeline {
    agent {
     label "remote_node1"
    }
-   archiveArtifacts('results/cypress-report-*.xml')
+   steps {
+    archiveArtifacts('results/cypress-report-*.xml')
+   }
   }
   stage('Publish Results and Artifacts 2') {
    agent {
     label "remote_node2"
+   } 
+   steps {
+    archiveArtifacts('results/cypress-report-*.xml')
    }
-   archiveArtifacts('results/cypress-report-*.xml')
   }
  }
  post {
