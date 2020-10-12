@@ -15,6 +15,8 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
+      junit 'results/cypress-report-*.xml'
+
      }
     }
     stage('Slave Node2') {
@@ -26,6 +28,8 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
+      junit 'results/cypress-report-*.xml'
+
      }
     }
    }
@@ -46,11 +50,6 @@ pipeline {
     archiveArtifacts('results/cypress-report-*.xml')
 
    }
-  }
- }
- post {
-  always {
-   junit 'results/cypress-report-*.xml'
   }
  }
 }
