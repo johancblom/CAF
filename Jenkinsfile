@@ -15,7 +15,7 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
-      junit 'results/cypress-report.xml'
+      junit 'results/cypress-report-*.xml'
      }
     }
     stage('Slave Node2') {
@@ -27,7 +27,7 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
-      junit 'results/cypress-report.xml'
+      junit 'results/cypress-report-*.xml'
      }
     }
    }
