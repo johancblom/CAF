@@ -35,7 +35,12 @@ pipeline {
     label "remode_node1"
    }
    steps {
-    archiveArtifacts('results/cypress-report-*.xml')
+    script {
+     step ([$class: 'CopyArtifact',
+     projectName: 'cypress-automation-pipeline',
+     filter: 'results/*.xml',
+     target: 'Infra' ])
+    }
    }
   }
   stage('Publish Results and Artifacts 2') {
@@ -43,7 +48,12 @@ pipeline {
     label "remote_node2"
    } 
    steps {
-    archiveArtifacts('results/cypress-report-*.xml')
+    script {
+     step ([$class: 'CopyArtifact',
+     projectName: 'cypress-automation-pipeline',
+     filter: 'results/*.xml',
+     target: 'Infra' ])
+    }
    }
   }
  }
