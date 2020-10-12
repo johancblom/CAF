@@ -31,22 +31,24 @@ pipeline {
    }
   }
   stage('Report results') {
-   stage('Slave Node1') {
-     agent {
-      label "remode_node1"
-     }
-     steps {
-      junit 'results/cypress-report-*.xml'
+   stages {
+    stage('Slave Node1') {
+      agent {
+       label "remode_node1"
+      }
+      steps {
+       junit 'results/cypress-report-*.xml'
+      }
+    }
+    stage('Slave Node2') {
+      agent {
+       label "remote_node2"
+      }
+      steps {
+       junit 'results/cypress-report-*.xml'
+      }
      }
    }
-   stage('Slave Node2') {
-     agent {
-      label "remote_node2"
-     }
-     steps {
-      junit 'results/cypress-report-*.xml'
-     }
-    }
   }
  }
 }
