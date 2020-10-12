@@ -32,7 +32,7 @@ pipeline {
   }
   stage('Publish Results and Artifacts 1') {
    agent {
-    label "remote_node1"
+    label "remode_node1"
    }
    steps {
     archiveArtifacts('results/cypress-report-*.xml')
