@@ -15,8 +15,7 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
-      junit 'results/cypress-report-*.xml'
-
+      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
      }
     }
     stage('Slave Node2') {
@@ -28,27 +27,9 @@ pipeline {
       bat 'npm install'
       bat 'npm update'
       bat 'npm run triggerAllTests-dashboard'
-      junit 'results/cypress-report-*.xml'
-
+      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
      }
     }
-   }
-  }
-  stage('Publish Results and Artifacts 1') {
-   agent {
-    label "remode_node1"
-   }
-   steps {
-    archiveArtifacts('results/cypress-report-*.xml')
-   }
-  }
-  stage('Publish Results and Artifacts 2') {
-   agent {
-    label "remote_node2"
-   } 
-   steps {
-    archiveArtifacts('results/cypress-report-*.xml')
-
    }
   }
  }
