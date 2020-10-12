@@ -30,10 +30,21 @@ pipeline {
     }
    }
   }
+  stage('Publish Results and Artifacts 1') {
+   agent {
+    label "remote_node1"
+   }
+   archiveArtifacts('results/cypress-report-*.xml')
+  }
+  stage('Publish Results and Artifacts 2') {
+   agent {
+    label "remote_node2"
+   }
+   archiveArtifacts('results/cypress-report-*.xml')
+  }
  }
  post {
   always {
-   archiveArtifacts 'results/cypress-report-*.xml'
    junit 'results/cypress-report-*.xml'
   }
  }
