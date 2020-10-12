@@ -33,7 +33,7 @@ pipeline {
  }
  post {
   always {
-   archiveArtifacts artifacts: 'results/cypress-report-*.xml'
+   archiveArtifacts 'results/cypress-report-*.xml'
    junit 'results/cypress-report-*.xml'
   }
  }
