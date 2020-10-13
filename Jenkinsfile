@@ -14,8 +14,15 @@ pipeline {
       git url: 'https://github.com/johancblom/CAF.git'
       bat 'npm install'
       bat 'npm update'
-      bat 'npm run triggerAllTests-dashboard'
+      try {
+       bat 'npm run triggerAllTests-dashboard'
+      } catch (err) {
+        if (currentBuild.result == 'UNSTABLE')
+                currentBuild.result = 'FAILURE'
+            throw err
+        } finally {
       step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+      }
      }
     }
     stage('Slave Node2') {
@@ -26,8 +33,15 @@ pipeline {
       git url: 'https://github.com/johancblom/CAF.git'
       bat 'npm install'
       bat 'npm update'
-      bat 'npm run triggerAllTests-dashboard'
+      try {
+       bat 'npm run triggerAllTests-dashboard'
+      } catch (err) {
+        if (currentBuild.result == 'UNSTABLE')
+                currentBuild.result = 'FAILURE'
+            throw err
+        } finally {
       step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+      }
      }
     }
    }
