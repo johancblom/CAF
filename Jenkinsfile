@@ -24,6 +24,7 @@ pipeline {
             throw err
         } finally {
       step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+      archiveArtifacts 'results/cypress-report-*.xml'
       }
       }
      }
@@ -46,6 +47,7 @@ pipeline {
             throw err
         } finally {
       step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+            archiveArtifacts 'results/cypress-report-*.xml'
       }
       }
      }
