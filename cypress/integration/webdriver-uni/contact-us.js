@@ -19,7 +19,7 @@ describe('Test Contact Us form via WebdriverUni', () => {
     cy.get('[name="last_name"]').type('Bloggs')
     cy.get('textarea.feedback-input').type('a comment')
     cy.get('[type="submit"]').click()
-    cy.get('body').should('contain', 'Errors: all fields are required')
+    cy.get('body').should('contain', 'Error: all fields are required')
     cy.get('body').should('contain', 'Error: Invalid email address')
   })
 })
