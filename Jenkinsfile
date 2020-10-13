@@ -16,16 +16,15 @@ pipeline {
       bat 'npm update'
       script {
 
-      try {
-       bat 'npm run triggerAllTests-dashboard'
-      } catch (err) {
+       try {
+        bat 'npm run triggerAllTests-dashboard'
+       } catch (err) {
         if (currentBuild.result == 'UNSTABLE')
-                currentBuild.result = 'FAILURE'
-            throw err
-        } finally {
-      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
-      archiveArtifacts 'results/cypress-report-*.xml'
-      }
+         currentBuild.result = 'FAILURE'
+         throw err
+       } finally {
+        step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+       }
       }
      }
     }
@@ -39,16 +38,15 @@ pipeline {
       bat 'npm update'
       script {
 
-      try {
-       bat 'npm run triggerAllTests-dashboard'
-      } catch (err) {
+       try {
+        bat 'npm run triggerAllTests-dashboard'
+       } catch (err) {
         if (currentBuild.result == 'UNSTABLE')
                 currentBuild.result = 'FAILURE'
             throw err
-        } finally {
-      step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
-            archiveArtifacts 'results/cypress-report-*.xml'
-      }
+       } finally {
+        step([$class: 'JUnitResultArchiver', testResults: 'results/cypress-report-*.xml', healthScaleFactor: 1.0])
+       }
       }
      }
     }
